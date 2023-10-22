@@ -1,5 +1,5 @@
 #include "AI.hpp"
-
+//testing git in vs code
 AI::AI()
 {
     if (ChooseforOX % 2 == 0) OX = 2;
