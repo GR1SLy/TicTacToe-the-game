@@ -119,6 +119,10 @@ labelreplay:
         }
     }
 
+    delete game1;
+    delete gamer1;
+    delete gamer2;
+
     
     return 0;
 }
