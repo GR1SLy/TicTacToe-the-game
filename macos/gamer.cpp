@@ -69,7 +69,7 @@ bool gamer::choosemove(game& game)
         movey = 2;
         break;
     }
-    if (game.playground[movex][movey] == 0) return true;
+    if (game.get_playground_cell(movex, movey) == 0) return true;
     else
     {
         cout << "That cell is already used" << endl;

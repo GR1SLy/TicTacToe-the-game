@@ -25,9 +25,9 @@ game::~game()
     }
 }
 
-void game::setmove(const int x, const int y, const int n)
+void game::setmove(const int x, const int y, const int OX)
 {
-    if (playground[x][y] == 0) playground[x][y] = n;
+    if (playground[x][y] == 0) playground[x][y] = OX;
     else cout << "ERROR::The cell is not empty!";
 }
 
@@ -96,14 +96,14 @@ bool game::checkwinner(const int n)
     return winner;
 }
 
-int game::get_game_score(const int n) 
+int game::get_game_score(const int OX) 
 {
-    if (n == 1) return Oscore;
-    else if (n == 2) return Xscore;
+    if (OX == 1) return Oscore;
+    else if (OX == 2) return Xscore;
     return -1;
 }
 
-bool game::show_playground()
+bool game::show_playground(const int OX)
 {
     #ifdef DEBUG
     cout << "PLAYGROUND:" << endl;
@@ -118,32 +118,30 @@ bool game::show_playground()
     cout << endl << endl;
     #endif
     this->visualize();
-    // Check for empty cells
-    for (int i = 0; i < 3; i++)
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            if (playground[i][j] == 0) return false;
-        }
-    }
-    return true;
+    return this->checkwinner(OX);
+    
 }
 
-void game::show_valid_moves()
+bool game::show_valid_moves()
 {
     cout << "Valid moves:\nEnter a number where to put your move:" << endl;
     int num = 0;
+    bool empty = false;
     for(int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
         {
             ++num;
-            if (playground[i][j] == 0) cout << num << "\t";
+            if (playground[i][j] == 0) 
+            {
+                cout << num << "\t";
+                empty = true;
+            }
             else cout << " \t";
         }
         cout << endl;
     }
-    
+    return empty;   
 }
 
 void game::visualize()

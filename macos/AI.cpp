@@ -1,13 +1,15 @@
 #include "AI.hpp"
-//testing git in vs code
-AI::AI()
+AI::AI():gamer()
 {
-    if (ChooseforOX % 2 == 0) OX = 2;
-    else OX = 1;
-    movex = 0;
-    movey = 0;
-    score = 0;
-    difficulty = 1;
+    // if (ChooseforOX % 2 == 0) OX = 2;
+    // else OX = 1;
+    // movex = 0;
+    // movey = 0;
+    // score = 0;
+    int n;
+    cout << "Choose difficulty for AI:\n1:\tEasy\n2:\tHard\n3:\tReally Hard\nEnter a number: ";
+    cin >> n;
+    if (n > 0 && n < 4) difficulty = n;
 }
 
 AI::~AI()

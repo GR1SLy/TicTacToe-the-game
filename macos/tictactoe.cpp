@@ -18,7 +18,15 @@ Plans: optimize algorithm for AI gamer,
 add complete menu, naming gamers before game.
 ...............................................
 
-Day 3:
+Day 3: 23.10.23: Changed amount of players 
+selection by dynamic storage. Changed methods
+of game class to use less lines in main file.
+Uploaded project in git repository.
+
+Plans: the same thing.
+...............................................
+
+Day 4:
 
 
 ...............................................
@@ -31,175 +39,86 @@ using namespace std;
 #include "game.cpp"
 #include "gamer.cpp"
 #include "AI.cpp"
-//#define DEBUG
-
-void oneplayer()
-{
-    gamer gamer1;
-    AI gamer2;
-    game game1;
-    gamer2.set_difficulty();
-    while (true)
-    {
-        if (game1.show_playground())
-        {
-            cout << "Moves left! It is draw!" << endl;
-            break;
-        }
-        cout << endl;
-        game1.show_valid_moves();
-        cout << endl;
-labelfail1:
-        if (!gamer1.choosemove(game1)) goto labelfail1;
-        game1.setmove(gamer1.get_movex(), gamer1.get_movey(), gamer1.get_OX());
-        if (game1.checkwinner(gamer1.get_OX()))
-        {
-            system("clear");
-            game1.show_playground();
-            cout << "Gamer 1 is the winner!" << endl;
-            break;
-        }
-        cout << endl;
-        system("clear");
-
-
-
-        if (game1.show_playground())
-        {
-            cout << "Moves left! It is draw!" << endl;
-            break;
-        }
-        cout << endl;
-        game1.show_valid_moves();
-        cout << endl;
-labelfail2:
-        if (!gamer2.choosemove(game1)) goto labelfail2;
-        game1.setmove(gamer2.get_movex(), gamer2.get_movey(), gamer2.get_OX());
-        if (game1.checkwinner(gamer2.get_OX())) 
-        {
-            system("clear");
-            game1.show_playground();
-            cout << "Gamer 2 is the winner!" << endl;
-            break;
-        }
-        cout << endl;
-        system("clear");
-    }
-    cout << endl;
-    
-
-    cout << "Gamer 1 score is: " << gamer1.get_score() << endl;
-    cout << "Gamer 2 score is: " << gamer2.get_score() << endl;
-}
-
-
-
-
-void twoplayers()
-{
-    gamer gamer1, gamer2;
-    game game1;
-    while (true)
-    {
-        if (game1.show_playground())
-        {
-            cout << "Moves left! It is draw!" << endl;
-            break;
-        }
-        cout << endl;
-        game1.show_valid_moves();
-        cout << endl;
-labelfail1:
-        if (!gamer1.choosemove(game1)) goto labelfail1;
-        game1.setmove(gamer1.get_movex(), gamer1.get_movey(), gamer1.get_OX());
-        if (game1.checkwinner(gamer1.get_OX()))
-        {
-            system("clear");
-            game1.show_playground();
-            cout << "Gamer 1 is the winner!" << endl;
-            break;
-        }
-        cout << endl;
-        system("clear");
-
-
-
-        if (game1.show_playground())
-        {
-            cout << "Moves left! It is draw!" << endl;
-            break;
-        }
-        cout << endl;
-        game1.show_valid_moves();
-        cout << endl;
-labelfail2:
-        if (!gamer2.choosemove(game1)) goto labelfail2;
-        game1.setmove(gamer2.get_movex(), gamer2.get_movey(), gamer2.get_OX());
-        if (game1.checkwinner(gamer2.get_OX())) 
-        {
-            system("clear");
-            game1.show_playground();
-            cout << "Gamer 2 is the winner!" << endl;
-            break;
-        }
-        cout << endl;
-        system("clear");
-    }
-    cout << endl;
-    
-
-    cout << "Gamer 1 score is: " << gamer1.get_score() << endl;
-    cout << "Gamer 2 score is: " << gamer2.get_score() << endl;
-}
-
-
-
 
 int main() 
 {
+    game *game1 = new game;
+    gamer *gamer1, *gamer2;
 
-    #ifdef DEBUG
-    gamer gamer1;
-    AI gamer2;
-    game game1;
-
-    int n = 5;
-    gamer1.choosemove(game1, n);
-    game1.setmove(gamer1.get_movex(),gamer1.get_movey(), gamer1.get_OX());
-    if (game1.show_playground())
-    {
-        return 0;
-    }
-    gamer2.choosemove(game1);
-    game1.setmove(gamer2.get_movex(), gamer2.get_movey(), gamer2.get_OX());
-    game1.show_playground();
-    #endif
-
-
-    #ifndef DEBUG
 
     int k;
-    int n;
 labelselect:
     cout << "Select game mode:\n1:\tOne player\n2:\tTwo players\nEnter a number: ";
     cin >> k;
 labelreplay:
-    if (k == 1) oneplayer();
-    else if (k == 2) twoplayers();
+    if (k == 1) 
+    {
+        gamer1 = new gamer;
+        gamer2 = new AI;
+    }
+    else if (k == 2)
+    {
+        gamer1 = new gamer;
+        gamer2 = new gamer;
+    }
     else 
     {
         cout << "Enter correct number!" << endl;
         goto labelselect;
     }
-    
-     
-    
-    cout << "If you want to replay the game - enter 1 or any other to leave: ";
-    cin >> n;
-    if (n == 1) goto labelreplay;
-    else cout << "Leaving..........." << endl;
 
-    #endif
+
+
+    while (true)
+    {
+        game1->show_playground(1);
+        game1->show_valid_moves();
+        while (true)
+        {
+        gamer1fail:
+            if (!gamer1->choosemove(*game1)) goto gamer1fail;
+            game1->setmove(gamer1->get_movex(), gamer1->get_movey(), gamer1->get_OX());
+            system("clear");
+            if (game1->show_playground(gamer1->get_OX()))
+            {
+                cout << "Gamer 1 is the winner!" << endl;
+                break;
+            }
+            if (!game1->show_valid_moves())
+            {
+                cout << "It is a draw! Moves left!" << endl;
+                break;
+            }
+
+        gamer2fail:
+            if (!gamer2->choosemove(*game1)) goto gamer2fail;
+            game1->setmove(gamer2->get_movex(), gamer2->get_movey(), gamer2->get_OX());
+            system("clear");
+            if (game1->show_playground(gamer2->get_OX()))
+            {
+                cout << "Gamer 2 is the winner!" << endl;
+                break;
+            }
+            if (!game1->show_valid_moves())
+            {
+                cout << "It is a draw! Moves left!" << endl;
+                break;
+            }
+        }
+        cout << "If you want to replay the game - enter 1 or any other to leave: ";
+        cin >> k;
+        if (k == 1)
+        {
+            delete game1;
+            game1 = new game;
+        }
+        else
+        {
+            cout << "Leaving..........." << endl;
+            break;
+        }
+    }
+
     
     return 0;
 }

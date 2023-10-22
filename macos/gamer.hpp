@@ -12,8 +12,8 @@ public:
     gamer();
     ~gamer();
     //void choose_move(const string move); // Enter move like 1,2 or 1;2 or 1.2
-    virtual bool choosemove(game& game); // Enter move by valid moves //nado ebanut' proverky na 0 [i][j]
-    bool choosemove(game& game, const int n);
+    virtual bool choosemove(game& game); // Enter move by valid moves and return false if number is incorrect
+    bool choosemove(game& game, const int n); // Enter move by valid moves and return false if number is incorrect with n for debug without cin
     int get_movex();
     int get_movey();
     int get_OX();   // Get playing O or X
