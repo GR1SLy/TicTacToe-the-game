@@ -4,7 +4,7 @@
 #include <iostream>
 using namespace std;
 #include "gamer.hpp"
-#include "game.hpp"
+//#include "game.hpp"
 #pragma once
 
 class game;

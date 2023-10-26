@@ -1,12 +1,13 @@
 #include "gamer.hpp"
+//#define DEBUG
 
 int gamer::ChooseforOX = 0;
 
 gamer::gamer()
 { 
     ++ChooseforOX;
-    if (ChooseforOX % 2 == 0) OX = 2;
-    else OX = 1;
+    if (ChooseforOX % 2 == 0) ox = OX::X;
+    else ox = OX::O;
     movex = 0;
     movey = 0;
     score = 0;
@@ -16,17 +17,9 @@ gamer::~gamer()
 {
 }
 
-/* void gamer::choose_move(const string move) 
-{
-    movex = (int)move[0] - '0';
-    movey = (int)move[2] - '0'; 
-} */
-
 bool gamer::choosemove(game& game)
 {
-    cout << "Gamer " << OX << "! It is your turn with ";
-    if (OX == 1) cout << "O";
-    else if (OX == 2) cout << "X";
+    cout << "Gamer " << ChooseforOX << "! It is your turn with " << ox;
     cout << endl;
     int n;
     cin >> n;
@@ -69,7 +62,7 @@ bool gamer::choosemove(game& game)
         movey = 2;
         break;
     }
-    if (game.get_playground_cell(movex, movey) == 0) return true;
+    if (game.get_playground_cell(movex, movey) == OX::empty) return true;
     else
     {
         cout << "That cell is already used" << endl;
@@ -77,11 +70,10 @@ bool gamer::choosemove(game& game)
     }
 }
 
+#ifdef DEBUG
 bool gamer::choosemove(game& game, const int n)
 {
-    cout << "Gamer " << OX << "! It is your turn with ";
-    if (OX == 1) cout << "O";
-    else if (OX == 2) cout << "X";
+    cout << "Gamer " << ChooseforOX << "! It is your turn with " << ox;
     cout << endl;
     switch (n)
     {
@@ -122,9 +114,10 @@ bool gamer::choosemove(game& game, const int n)
         movey = 2;
         break;
     }
-    if (game.get_playground_cell(movex, movey) == 0) return true;
+    if (game.get_playground_cell(movex, movey) == OX::empty) return true;
     return false;
 }
+#endif
 
 int gamer::get_movex()
 {
@@ -136,14 +129,28 @@ int gamer::get_movey()
     return movey;
 }
 
-int gamer::get_OX()
+char gamer::get_OX()
 {
-    return OX;
+    return ox;
 }
 
 int gamer::get_score()
 {
-    score = game::get_game_score(OX);
+    score = game::get_game_score(ox);
     // cout << "Gamer " << OX << " score is: " << score << endl;
     return score;
+}
+
+bool gamer::select_OX() // Needed rework for second gamer automatic choose
+{
+    cout << "Select O or X for gamer " << ChooseforOX << " (enter " << (char)OX::O << " or " << (char)OX::X << "): ";
+        char ch;
+        cin >> ch;
+        if (ch == OX::O || ch == OX::X) ox = ch;
+        else 
+        {
+            cout << "Invalid symbol " << ch << endl;
+            return false;
+        }
+        return true;
 }

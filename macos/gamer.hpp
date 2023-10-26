@@ -16,15 +16,17 @@ public:
     bool choosemove(game& game, const int n); // Enter move by valid moves and return false if number is incorrect with n for debug without cin
     int get_movex();
     int get_movey();
-    int get_OX();   // Get playing O or X
+    char get_OX();   // Get playing O or X
     int get_score();
+    bool select_OX(); //Select O or X for gamer and return true if entered symbol is valid NEED REWORK
 
 protected:
     int score;
     int movex;
     int movey;
     static int ChooseforOX; // Even - X, Odd - O
-    int OX; // 1 - O, 2 - X
+    //int OX; // 1 - O, 2 - X
+    char ox;
 };
 
 #endif

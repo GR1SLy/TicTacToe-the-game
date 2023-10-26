@@ -26,7 +26,13 @@ Uploaded project in git repository.
 Plans: the same thing.
 ...............................................
 
-Day 4:
+Day 4: 26.10.23: Eddited OX from 0/1 to enum
+Tryed add O/X selection but it needs rework
+
+Plans: the same thing + rework O/X selection
+...............................................
+
+Day 5:
 
 
 ...............................................
@@ -54,11 +60,13 @@ labelreplay:
     if (k == 1) 
     {
         gamer1 = new gamer;
+        //if (!gamer1->select_OX()) goto labelreplay;
         gamer2 = new AI;
     }
     else if (k == 2)
     {
         gamer1 = new gamer;
+        //if (!gamer1->select_OX()) goto labelreplay;
         gamer2 = new gamer;
     }
     else 

@@ -1,11 +1,6 @@
 #include "AI.hpp"
 AI::AI():gamer()
 {
-    // if (ChooseforOX % 2 == 0) OX = 2;
-    // else OX = 1;
-    // movex = 0;
-    // movey = 0;
-    // score = 0;
     int n;
     cout << "Choose difficulty for AI:\n1:\tEasy\n2:\tHard\n3:\tReally Hard\nEnter a number: ";
     cin >> n;
@@ -65,7 +60,7 @@ bool AI::choosemove(game& game)
                 break;
             }
         }
-        while (game.get_playground_cell(movex, movey) != 0);
+        while (game.get_playground_cell(movex, movey) != OX::empty);
     }
     else if (difficulty == 2)
     {
@@ -73,20 +68,20 @@ bool AI::choosemove(game& game)
     labeldef:
         for (int i = 0; i < 3; i++)
         {
-            if (game.get_playground_cell(i, 0) != OX && game.get_playground_cell(i, 0) != 0)
+            if (game.get_playground_cell(i, 0) != ox && game.get_playground_cell(i, 0) != OX::empty)
             {
-                if (game.get_playground_cell(i, 1) != OX && game.get_playground_cell(i, 1) != 0)
+                if (game.get_playground_cell(i, 1) != ox && game.get_playground_cell(i, 1) != OX::empty)
                 {
-                    if (game.get_playground_cell(i, 2) != OX && game.get_playground_cell(i, 2) == 0)
+                    if (game.get_playground_cell(i, 2) != ox && game.get_playground_cell(i, 2) == OX::empty)
                     {
                         movex = i;
                         movey = 2;
                         return true;
                     }
                 }
-                else if (game.get_playground_cell(i, 1) != OX && game.get_playground_cell(i, 1) == 0)
+                else if (game.get_playground_cell(i, 1) != ox && game.get_playground_cell(i, 1) == OX::empty)
                 {
-                    if (game.get_playground_cell(i, 2) != OX && game.get_playground_cell(i, 2) != 0)
+                    if (game.get_playground_cell(i, 2) != ox && game.get_playground_cell(i, 2) != OX::empty)
                     {
                         movex = i;
                         movey = 1;
@@ -94,11 +89,11 @@ bool AI::choosemove(game& game)
                     }
                 }
             }
-            else if (game.get_playground_cell(i, 0) != OX && game.get_playground_cell(i, 0) == 0)
+            else if (game.get_playground_cell(i, 0) != ox && game.get_playground_cell(i, 0) == OX::empty)
             {
-                if (game.get_playground_cell(i, 1) != OX && game.get_playground_cell(i, 1) != 0)
+                if (game.get_playground_cell(i, 1) != ox && game.get_playground_cell(i, 1) != OX::empty)
                 {
-                    if (game.get_playground_cell(i, 2) != OX && game.get_playground_cell(i, 2) != 0)
+                    if (game.get_playground_cell(i, 2) != ox && game.get_playground_cell(i, 2) != OX::empty)
                     {
                         movex = i;
                         movey = 0;
@@ -110,20 +105,20 @@ bool AI::choosemove(game& game)
         // Check for column (rotated line check)
         for (int i = 0; i < 3; i++)
         {
-            if (game.get_playground_cell(0, i) != OX && game.get_playground_cell(0, i) != 0)
+            if (game.get_playground_cell(0, i) != ox && game.get_playground_cell(0, i) != OX::empty)
             {
-                if (game.get_playground_cell(1, i) != OX && game.get_playground_cell(1, i) != 0)
+                if (game.get_playground_cell(1, i) != ox && game.get_playground_cell(1, i) != OX::empty)
                 {
-                    if (game.get_playground_cell(2, i) != OX && game.get_playground_cell(2, i) == 0)
+                    if (game.get_playground_cell(2, i) != ox && game.get_playground_cell(2, i) == OX::empty)
                     {
                         movex = 2;
                         movey = i;
                         return true;
                     }
                 }
-                else if (game.get_playground_cell(1, i) != OX && game.get_playground_cell(1, i) == 0)
+                else if (game.get_playground_cell(1, i) != ox && game.get_playground_cell(1, i) == OX::empty)
                 {
-                    if (game.get_playground_cell(2, i) != OX && game.get_playground_cell(2, i) != 0)
+                    if (game.get_playground_cell(2, i) != ox && game.get_playground_cell(2, i) != OX::empty)
                     {
                         movex = 1;
                         movey = i;
@@ -131,11 +126,11 @@ bool AI::choosemove(game& game)
                     }
                 }
             }
-            else if (game.get_playground_cell(0, i) != OX && game.get_playground_cell(0, i) == 0)
+            else if (game.get_playground_cell(0, i) != ox && game.get_playground_cell(0, i) == OX::empty)
             {
-                if (game.get_playground_cell(1, i) != OX && game.get_playground_cell(1, i) != 0)
+                if (game.get_playground_cell(1, i) != ox && game.get_playground_cell(1, i) != OX::empty)
                 {
-                    if (game.get_playground_cell(2, i) != OX && game.get_playground_cell(2, i) != 0)
+                    if (game.get_playground_cell(2, i) != ox && game.get_playground_cell(2, i) != OX::empty)
                     {
                         movex = 0;
                         movey = i;
@@ -145,20 +140,20 @@ bool AI::choosemove(game& game)
             }
         }
         // Check for diagnals
-        if (game.get_playground_cell(0, 0) != OX && game.get_playground_cell(0, 0) != 0)
+        if (game.get_playground_cell(0, 0) != ox && game.get_playground_cell(0, 0) != OX::empty)
         {
-            if (game.get_playground_cell(1,1) != OX && game.get_playground_cell(1, 1) != 0)
+            if (game.get_playground_cell(1,1) != ox && game.get_playground_cell(1, 1) != OX::empty)
             {
-                if (game.get_playground_cell(2, 2) != OX && game.get_playground_cell(2, 2) == 0)
+                if (game.get_playground_cell(2, 2) != ox && game.get_playground_cell(2, 2) == OX::empty)
                 {
                     movex = 2;
                     movey = 2;
                     return true;
                 }
             }
-            else if (game.get_playground_cell(1, 1) != OX && game.get_playground_cell(1, 1) == 0)
+            else if (game.get_playground_cell(1, 1) != ox && game.get_playground_cell(1, 1) == 0)
             {
-                if (game.get_playground_cell(2, 2) != OX && game.get_playground_cell(2, 2) != 0)
+                if (game.get_playground_cell(2, 2) != ox && game.get_playground_cell(2, 2) != 0)
                 {
                     movex = 1;
                     movey = 1;
@@ -166,11 +161,11 @@ bool AI::choosemove(game& game)
                 }
             }
         }
-        else if (game.get_playground_cell(0, 0) != OX && game.get_playground_cell(0, 0) == 0)
+        else if (game.get_playground_cell(0, 0) != ox && game.get_playground_cell(0, 0) == OX::empty)
         {
-            if (game.get_playground_cell(1,1) != OX && game.get_playground_cell(1, 1) != 0)
+            if (game.get_playground_cell(1,1) != ox && game.get_playground_cell(1, 1) != OX::empty)
             {
-                if (game.get_playground_cell(2, 2) != OX && game.get_playground_cell(2, 2) != 0)
+                if (game.get_playground_cell(2, 2) != ox && game.get_playground_cell(2, 2) != OX::empty)
                 {
                     movex = 0;
                     movey = 0;
@@ -179,20 +174,20 @@ bool AI::choosemove(game& game)
             }
         }
         // Other diagonal
-        if (game.get_playground_cell(0, 2) != OX && game.get_playground_cell(0, 2) != 0)
+        if (game.get_playground_cell(0, 2) != ox && game.get_playground_cell(0, 2) != OX::empty)
         {
-            if (game.get_playground_cell(1,1) != OX && game.get_playground_cell(1, 1) != 0)
+            if (game.get_playground_cell(1,1) != ox && game.get_playground_cell(1, 1) != OX::empty)
             {
-                if (game.get_playground_cell(2, 0) != OX && game.get_playground_cell(2, 0) == 0)
+                if (game.get_playground_cell(2, 0) != ox && game.get_playground_cell(2, 0) == OX::empty)
                 {
                     movex = 2;
                     movey = 0;
                     return true;
                 }
             }
-            else if (game.get_playground_cell(1, 1) != OX && game.get_playground_cell(1, 1) == 0)
+            else if (game.get_playground_cell(1, 1) != ox && game.get_playground_cell(1, 1) == OX::empty)
             {
-                if (game.get_playground_cell(2, 0) != OX && game.get_playground_cell(2, 0) != 0)
+                if (game.get_playground_cell(2, 0) != ox && game.get_playground_cell(2, 0) != OX::empty)
                 {
                     movex = 1;
                     movey = 1;
@@ -200,11 +195,11 @@ bool AI::choosemove(game& game)
                 }
             }
         }
-        else if (game.get_playground_cell(0, 2) != OX && game.get_playground_cell(0, 2) == 0)
+        else if (game.get_playground_cell(0, 2) != ox && game.get_playground_cell(0, 2) == OX::empty)
         {
-            if (game.get_playground_cell(1,1) != OX && game.get_playground_cell(1, 1) != 0)
+            if (game.get_playground_cell(1,1) != ox && game.get_playground_cell(1, 1) != OX::empty)
             {
-                if (game.get_playground_cell(2, 0) != OX && game.get_playground_cell(2, 0) != 0)
+                if (game.get_playground_cell(2, 0) != ox && game.get_playground_cell(2, 0) != OX::empty)
                 {
                     movex = 0;
                     movey = 2;
@@ -220,20 +215,20 @@ bool AI::choosemove(game& game)
     {
         // Firstly check if bot can put 3 in line
         // Check diagonal
-        if (game.get_playground_cell(0, 0) == OX)
+        if (game.get_playground_cell(0, 0) == ox)
         {
-            if (game.get_playground_cell(1,1) == OX)
+            if (game.get_playground_cell(1,1) == ox)
             {
-                if (game.get_playground_cell(2, 2) == 0)
+                if (game.get_playground_cell(2, 2) == OX::empty)
                 {
                     movex = 2;
                     movey = 2;
                     return true;
                 }
             }
-            else if (game.get_playground_cell(1, 1) == 0)
+            else if (game.get_playground_cell(1, 1) == OX::empty)
             {
-                if (game.get_playground_cell(2, 2) == OX)
+                if (game.get_playground_cell(2, 2) == ox)
                 {
                     movex = 1;
                     movey = 1;
@@ -241,11 +236,11 @@ bool AI::choosemove(game& game)
                 }
             }
         }
-        else if (game.get_playground_cell(0, 0) == 0)
+        else if (game.get_playground_cell(0, 0) == OX::empty)
         {
-            if (game.get_playground_cell(1,1) == OX)
+            if (game.get_playground_cell(1,1) == ox)
             {
-                if (game.get_playground_cell(2, 2) == OX)
+                if (game.get_playground_cell(2, 2) == ox)
                 {
                     movex = 0;
                     movey = 0;
@@ -254,9 +249,9 @@ bool AI::choosemove(game& game)
             }
         }
         // Other diagonal
-        if (game.get_playground_cell(0, 2) == OX )
+        if (game.get_playground_cell(0, 2) == ox )
         {
-            if (game.get_playground_cell(1,1) == OX)
+            if (game.get_playground_cell(1,1) == ox)
             {
                 if (game.get_playground_cell(2, 0) == 0)
                 {
@@ -265,9 +260,9 @@ bool AI::choosemove(game& game)
                     return true;
                 }
             }
-            else if (game.get_playground_cell(1, 1) == 0)
+            else if (game.get_playground_cell(1, 1) == OX::empty)
             {
-                if (game.get_playground_cell(2, 0) == OX)
+                if (game.get_playground_cell(2, 0) == ox)
                 {
                     movex = 1;
                     movey = 1;
@@ -275,11 +270,11 @@ bool AI::choosemove(game& game)
                 }
             }
         }
-        else if (game.get_playground_cell(0, 2) == 0)
+        else if (game.get_playground_cell(0, 2) == OX::empty)
         {
-            if (game.get_playground_cell(1,1) == OX)
+            if (game.get_playground_cell(1,1) == ox)
             {
-                if (game.get_playground_cell(2, 0) == OX)
+                if (game.get_playground_cell(2, 0) == ox)
                 {
                     movex = 0;
                     movey = 2;
@@ -290,20 +285,20 @@ bool AI::choosemove(game& game)
         // Check lines for win
         for (int i = 0; i < 3; i++)
         {
-            if (game.get_playground_cell(i, 0) == OX)
+            if (game.get_playground_cell(i, 0) == ox)
             {
-                if (game.get_playground_cell(i, 1) == OX)
+                if (game.get_playground_cell(i, 1) == ox)
                 {
-                    if (game.get_playground_cell(i, 2) == 0)
+                    if (game.get_playground_cell(i, 2) == OX::empty)
                     {
                         movex = i;
                         movey = 2;
                         return true;
                     }
                 }
-                else if (game.get_playground_cell(i, 1) == 0)
+                else if (game.get_playground_cell(i, 1) == OX::empty)
                 {
-                    if (game.get_playground_cell(i, 2) == OX)
+                    if (game.get_playground_cell(i, 2) == ox)
                     {
                         movex = i;
                         movey = 1;
@@ -311,11 +306,11 @@ bool AI::choosemove(game& game)
                     }
                 }
             }
-            else if (game.get_playground_cell(i, 0) == 0)
+            else if (game.get_playground_cell(i, 0) == OX::empty)
             {
-                if (game.get_playground_cell(i, 1) == OX)
+                if (game.get_playground_cell(i, 1) == ox)
                 {
-                    if (game.get_playground_cell(i, 2) == OX)
+                    if (game.get_playground_cell(i, 2) == ox)
                     {
                         movex = i;
                         movey = 0;
@@ -327,20 +322,20 @@ bool AI::choosemove(game& game)
         // Check columns for win
         for (int i = 0; i < 3; i++)
         {
-            if (game.get_playground_cell(0, i) == OX)
+            if (game.get_playground_cell(0, i) == ox)
             {
-                if (game.get_playground_cell(1, i) == OX)
+                if (game.get_playground_cell(1, i) == ox)
                 {
-                    if (game.get_playground_cell(2, i) == 0)
+                    if (game.get_playground_cell(2, i) == OX::empty)
                     {
                         movex = 2;
                         movey = i;
                         return true;
                     }
                 }
-                else if (game.get_playground_cell(1, i) == 0)
+                else if (game.get_playground_cell(1, i) == OX::empty)
                 {
-                    if (game.get_playground_cell(2, i) == OX)
+                    if (game.get_playground_cell(2, i) == ox)
                     {
                         movex = 1;
                         movey = i;
@@ -348,11 +343,11 @@ bool AI::choosemove(game& game)
                     }
                 }
             }
-            else if (game.get_playground_cell(0, i) == 0)
+            else if (game.get_playground_cell(0, i) == OX::empty)
             {
-                if (game.get_playground_cell(1, i) == OX)
+                if (game.get_playground_cell(1, i) == ox)
                 {
-                    if (game.get_playground_cell(2, i) == OX)
+                    if (game.get_playground_cell(2, i) == ox)
                     {
                         movex = 0;
                         movey = i;
