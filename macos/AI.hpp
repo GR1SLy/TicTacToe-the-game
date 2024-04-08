@@ -1,13 +1,10 @@
 #ifndef AI_H
 #define AI_H
+#pragma once
 
 #include <iostream>
 using namespace std;
 #include "gamer.hpp"
-//#include "game.hpp"
-#pragma once
-
-class game;
 
 class AI : public gamer
 {

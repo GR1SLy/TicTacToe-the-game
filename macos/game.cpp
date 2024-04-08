@@ -91,8 +91,7 @@ bool game::checkwinner(const char ox)
         }
     }
     
-    if (winner) if (ox == OX::O) Oscore++;
-                else Xscore++;
+    if (winner) (ox == OX::O)? Oscore++ : Xscore++;
     return winner;
 }
 

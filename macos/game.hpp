@@ -4,10 +4,8 @@
 //#define DEBUG
 
 #include <iostream>
-#include "AI.hpp"
 using namespace std;
 #pragma once
-
 
 enum OX
 {

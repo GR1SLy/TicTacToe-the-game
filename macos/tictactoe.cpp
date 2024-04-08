@@ -1,50 +1,8 @@
-/*
-...............DEVELOPMENT DIARY...............
-
-Day 1: 18.10.23: Created game with other gamer 
-and first cycle of game loop 
-(game.h, gamer.h, tictactoe.cpp).
-
-Plans: add AI gamer.
-...............................................
-
-Day 2: 19.10.23: Added AI gamer playing with 
-first gamer and created 3 levels of diddiculty 
-(random, defence, attach+defence).
-Added one or two players selection and replay 
-function.
-
-Plans: optimize algorithm for AI gamer,
-add complete menu, naming gamers before game.
-...............................................
-
-Day 3: 23.10.23: Changed amount of players 
-selection by dynamic storage. Changed methods
-of game class to use less lines in main file.
-Uploaded project in git repository.
-
-Plans: the same thing.
-...............................................
-
-Day 4: 26.10.23: Eddited OX from 0/1 to enum
-Tryed add O/X selection but it needs rework
-
-Plans: the same thing + rework O/X selection
-...............................................
-
-Day 5:
-
-
-...............................................
-
-*/
-
-
 #include <iostream>
 using namespace std;
-#include "game.cpp"
-#include "gamer.cpp"
-#include "AI.cpp"
+#include "game.hpp"
+#include "gamer.hpp"
+#include "AI.hpp"
 
 int main() 
 {
